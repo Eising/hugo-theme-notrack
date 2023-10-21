@@ -1,7 +1,11 @@
 
 <header class="page-header">
-    <div class="myname"> 
-        <h2><a href="{{ default .Site.Home .Site.BaseURL }}">{{ default .Site.Params.Author .Site.Params.siteHeading }}</a></h2> 
+    <div class="myname">
+        {{ if default false .Site.Params.siteLogo }}
+        <h2><a href="{{ default .Site.Home .Site.BaseURL }}"><img src="{{ .Site.Params.siteLogo }}"/></a></h2>
+        {{ else }}
+        <h2><a href="{{ default .Site.Home .Site.BaseURL }}">{{ default .Site.Params.Author .Site.Params.siteHeading }}</a></h2>
+        {{ end }}
     </div>
     <nav>
         <ul class="navbar">
@@ -16,7 +20,7 @@
             {{- if .HasChildren -}}
 
             {{- /* info about current menu */ -}}
-                {{- $currentMenusPage := .Page -}}
+                {{- $currentMenusPage := .Page -}} ws
 
                 {{- $currentMenuHasTags := false -}}
                 {{- $currentMenuHasCategories := false -}}
